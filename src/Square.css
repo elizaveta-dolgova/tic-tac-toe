@@ -1,0 +1,13 @@
+.square {
+    background-color: white;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.square.X {
+    background-color: blue;
+}
+
+.square.O {
+    background-color: red;
+}
