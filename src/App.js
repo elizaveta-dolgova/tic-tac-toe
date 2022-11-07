@@ -7,9 +7,9 @@ import { gameActions } from './store/gameSlice';
 
 function App() {
   const online = false;
- // const { squares, winner, tie} = useSelector(state => state.game);
-  
+  const actions = useSelector(state => state.game.actions);
   const squares = useSelector(state => state.game.squares);
+  console.log('squares: ', squares, actions);
   const winner = useSelector(state => state.game.winner);
   const tie = useSelector(state => state.game.isTie);
 
@@ -36,6 +36,10 @@ function App() {
     dispatch(gameActions.reset());
   }
 
+  const goBackBtnHandler = () => {
+    dispatch(gameActions.goBack())
+  }
+
   return (
     <>
       <div className='board'>
@@ -59,6 +63,7 @@ function App() {
       </div>
       }
       {/* <button>{online ? 'online' : 'ofline'}</button> */}
+      <button onClick={goBackBtnHandler} disabled={actions.length === 1}>Go Back</button>
       <button className='resetBtn' onClick={resetBtnHandler}>new game</button>
     </>
   );

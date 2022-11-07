@@ -4,6 +4,7 @@ const board = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8],
 
 const gameInitialState = {
     squares: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+    actions: [[0, 1, 2, 3, 4, 5, 6, 7, 8], ],
     xTurn: true,
     isTie: false,
     winner: '',
@@ -18,6 +19,7 @@ const gameSlice = createSlice({
             const { index } = action.payload;
             const symbol = state.xTurn ? 'X' : 'O';
             state.squares[index] = symbol;
+            state.actions.push(state.squares);
         },
 
         getWinner(state) {
@@ -44,6 +46,11 @@ const gameSlice = createSlice({
 
         reset(state) {
             return gameInitialState;
+        },
+
+        goBack(state) {
+            state.actions.pop();
+            state.squares = state.actions[state.actions.length - 1];
         }
     }
 })
