@@ -1,17 +1,17 @@
 .square {
-    background-color: white;
-    border: 1px solid black;
-    cursor: pointer;
-    font-size: 40px;
-    text-align: center;
-    font-weight: 600;
-    color: white;
+  background-color: white;
+  border: 1px solid black;
+  cursor: pointer;
+  font-size: 40px;
+  text-align: center;
+  font-weight: 600;
+  color: white;
 }
 
 .square.X {
-    background-color: blue;
+  background-color: blue;
 }
 
 .square.O {
-    background-color: red;
+  background-color: red;
 }

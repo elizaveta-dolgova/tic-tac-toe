@@ -1,7 +1,5 @@
-
 import { legacy_createStore as createStore } from 'redux';
-import gameReducer from "./gameSlice";
-
+import gameReducer from './gameSlice';
 
 const store = createStore(gameReducer);
 
