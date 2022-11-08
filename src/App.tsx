@@ -1,28 +1,26 @@
-
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import Square from './Square';
-import { gameActions } from './store/gameSlice';
+import { RootState} from './store/store';
 
 function App() {
-  const online = false;
-  const actions = useSelector(state => state.game.actions);
-  const squares = useSelector(state => state.game.squares);
-  console.log('squares: ', squares, actions);
-  const winner = useSelector(state => state.game.winner);
-  const tie = useSelector(state => state.game.isTie);
+  let online = false;
+  const { actions, squares, winner, isTie} = useSelector((state: RootState ) => state);
 
   const dispatch = useDispatch();
 
-  const btnHandler = (index) => {
-    dispatch(gameActions.btnClick({ index }));
-    dispatch(gameActions.isXTurn());
-    dispatch(gameActions.getWinner());
-    dispatch(gameActions.getTie());
+  const btnHandler = (index: number) => {
+    dispatch({type: 'btnClick', payload: index});
+    dispatch({type: 'isXTurn'});
+    dispatch({type: 'getWinner'});
+    dispatch({type: 'getTie'});
   }
 
-  const getClassName = (index) => {
+  const historyBtnHandler = (index: number) => {
+    dispatch({type: 'historyBtnClick', payload: index})
+  }
+
+  const getClassName = (index: number) => {
     if (squares[index] === 'X') {
       return 'X';
     }
@@ -33,11 +31,11 @@ function App() {
   }
 
   const resetBtnHandler = () => {
-    dispatch(gameActions.reset());
+    dispatch({type: 'reset'});
   }
 
   const goBackBtnHandler = () => {
-    dispatch(gameActions.goBack())
+    dispatch({type: 'goBack'})
   }
 
   return (
@@ -47,7 +45,7 @@ function App() {
         <Square
           disabled={typeof item === 'string'} 
           key={index}
-          text={item}
+          text={typeof item === 'string' ? item : ''}
           onClick={() => {btnHandler(index)}}
           className={`square ${getClassName(index)}`}
         />)}
@@ -57,13 +55,19 @@ function App() {
           <p className='gameOverModal__text'>{`${winner} win`}</p>
         </div>
       }
-      {tie && 
+      {isTie && 
         <div className='gameOverModal'>
           <p className='gameOverModal__text'>TIE</p>
       </div>
       }
       {/* <button>{online ? 'online' : 'ofline'}</button> */}
       <button onClick={goBackBtnHandler} disabled={actions.length === 1}>Go Back</button>
+      <div className='moveBtn-container'>
+        {/* {actions.map((item, index) => 
+          <button onClick={() => {historyBtnHandler(index)}} key={index}>{index ? 'Go to move #' + index : 'Go to game start'}
+          </button>
+        )} */}
+      </div>
       <button className='resetBtn' onClick={resetBtnHandler}>new game</button>
     </>
   );

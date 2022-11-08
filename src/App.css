@@ -42,3 +42,7 @@
   left: 0;
   color: white;
 }
+
+.moveBtn-container button{
+  display: block;
+}
