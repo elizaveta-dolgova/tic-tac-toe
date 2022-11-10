@@ -1,17 +1,18 @@
-import { useDispatch, useSelector } from 'react-redux';
-import './App.css';
-import Square from './Square';
-import type { RootState } from './store/store';
 import * as React from 'react';
+import './styles/App.css';
+import Square from './components/Square';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCurrentGameState } from './redux/game/selectors';
+import { changeSquare, fetchGameResult, goBack, isXTurn, resetGame } from './redux/game/actions';
 
 function App() {
-  const { actions, squares, winner, isTie } = useSelector((state: RootState) => state);
+  const { actions, squares, winner, isTie } = useSelector(getCurrentGameState);
   const dispatch = useDispatch();
 
   const btnHandler = (index: number) => {
-    dispatch({ type: 'btnClick', payload: index });
-    dispatch({ type: 'isXTurn' });
-    dispatch({ type: 'fetchGameResult' });
+    dispatch(changeSquare(index));
+    dispatch(isXTurn());
+    dispatch(fetchGameResult());
   };
 
   const getClassName = (index: number) => {
@@ -24,11 +25,11 @@ function App() {
   };
 
   const resetBtnHandler = () => {
-    dispatch({ type: 'reset' });
+    dispatch(resetGame());
   };
 
   const goBackBtnHandler = () => {
-    dispatch({ type: 'goBack' });
+    dispatch(goBack());
   };
 
   return (

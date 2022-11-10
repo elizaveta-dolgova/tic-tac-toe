@@ -46,22 +46,10 @@
     ]
   },
   "devDependencies": {
-    "@foxmedia/eslint-config": "git+ssh://git@gitlab.com:foxmedia/eslint-config.git",
     "@foxmedia/eslint-config-react": "git+ssh://git@gitlab.com:foxmedia/eslint-config-react.git",
     "@foxmedia/prettier-config": "git+ssh://git@gitlab.com:foxmedia/prettier-config.git",
     "@tsconfig/create-react-app": "^1.0.3",
-    "@typescript-eslint/eslint-plugin": "5.42.1",
-    "@typescript-eslint/parser": "5.42.1",
     "eslint": "8.27.0",
-    "eslint-import-resolver-alias": "1.1.2",
-    "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-jest": "27.1.4",
-    "eslint-plugin-node": "11.1.0",
-    "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-promise": "6.1.1",
-    "eslint-plugin-react": "7.31.10",
-    "eslint-plugin-react-hooks": "4.6.0",
-    "eslint-plugin-react-prefer-function-component": "3.0.0",
     "jest": "29.3.0",
     "prettier": "2.7.1"
   }

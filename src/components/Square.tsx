@@ -1,4 +1,4 @@
-import './Square.css';
+import '../styles/Square.css';
 import * as React from 'react';
 
 type ButtonProps = {
