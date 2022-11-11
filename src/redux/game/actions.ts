@@ -4,6 +4,16 @@ export const FETCH_GAME_RESULT = 'FETCH_GAME_RESULT';
 export const SET_GAME_RESULT = 'SET_GAME_RESULT';
 export const RESET_GAME = 'RESET_GAME';
 export const GO_BACK = 'GO_BACK';
+export const MAKE_MOVE = 'MOVE';
+
+export const makeMove = (index: number) => ({
+  type: MAKE_MOVE,
+  payload: {
+    index,
+  },
+}); 
+
+export type MakeMoveAction = ReturnType<typeof makeMove>;
 
 export const changeSquare = (index: number) => ({
   type: CHANGE_SQUARE,

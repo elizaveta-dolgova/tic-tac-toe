@@ -1,18 +1,20 @@
 import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import './styles/App.css';
 import Square from './components/Square';
-import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentGameState } from './redux/game/selectors';
-import { changeSquare, fetchGameResult, goBack, isXTurn, resetGame } from './redux/game/actions';
+import { changeSquare, fetchGameResult, goBack, isXTurn, makeMove, resetGame } from './redux/game/actions';
 
 function App() {
   const { actions, squares, winner, isTie } = useSelector(getCurrentGameState);
   const dispatch = useDispatch();
 
   const btnHandler = (index: number) => {
-    dispatch(changeSquare(index));
-    dispatch(isXTurn());
-    dispatch(fetchGameResult());
+    dispatch(makeMove(index));
+    // dispatch(changeSquare(index));
+    // dispatch(isXTurn());
+    // dispatch(fetchGameResult());
   };
 
   const getClassName = (index: number) => {
